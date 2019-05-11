@@ -13,7 +13,7 @@ class LandingViewController: UIViewController {
     // MARK: - variables
     
     private var scoreLabel: UILabel?
-    var score: Int = 0
+    private var score: Int = 0
 
     // MARK: - view life cycle
     
@@ -22,8 +22,12 @@ class LandingViewController: UIViewController {
         view.backgroundColor = .white
         configure()
     }
-    
-    // MARK: - functions
+
+}
+
+// MARK: - functions
+
+extension LandingViewController {
     
     private func configure() {
         let label = UILabel(frame: CGRect(x: 0, y: view.frame.size.height / 4.0, width: view.frame.size.width, height: 20))
@@ -42,9 +46,24 @@ class LandingViewController: UIViewController {
     }
     
     @IBAction private func didTapPlay(_ button: UIButton) {
+        score = 0
+        updateResult(false)
         let questionViewController = QuestionViewController()
+        questionViewController.delegate = self
         present(UINavigationController(rootViewController: questionViewController), animated: true, completion: nil)
     }
     
+}
 
+protocol ResultDelegate: class {
+    func updateResult(_ isRight: Bool)
+}
+
+extension LandingViewController: ResultDelegate {
+    func updateResult(_ isRight: Bool) {
+        if isRight {
+            score += 20
+            scoreLabel?.text = "\(score)"
+        }
+    }
 }

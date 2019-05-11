@@ -21,6 +21,11 @@ class QuestionsViewModel {
             questions = content.questions.map { QuizViewModel($0) }
         }
     }
+    
+    func next(_ index: Int) -> QuizViewModel? {
+        guard let questions = questions, index < questions.count else { return nil }
+        return questions[index]
+    }
 }
 
 struct QuizViewModel {
