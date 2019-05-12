@@ -11,22 +11,39 @@ import XCTest
 
 class QuizTests: XCTestCase {
     
-    var json: Data?
-
     override func setUp() {
         super.setUp()
-        guard let url = Bundle(for: type(of: self)).url(forResource: "question", withExtension: "json"),
-            let data = try? Data(contentsOf: url) else { return }
-        json = data
     }
 
     func testDecoding() {
-        do {
-            let questions = try JSONDecoder().decode(QuizResponse.self, from: json!)
-            XCTAssertNotNil(questions)
-        } catch {
-            print(error)
-            XCTFail()
+        // GIvEN
+        let viewModel = QuestionsViewModel()
+        
+        // THEN
+        XCTAssertNotNil(viewModel)
+    }
+    
+    func testsubscript() {
+        // GIVEN
+        let viewModel = QuestionsViewModel()
+        
+        // THEN
+        viewModel.questions?.enumerated().forEach { (index, question) in
+            XCTAssertEqual(question, viewModel[index])
+        }
+    }
+    
+    func testCheckAnswer() {
+        // GIVEN
+        let viewModel = QuestionsViewModel()
+        
+        // THEN
+        viewModel.questions?.forEach { question in
+            if question.answer {
+                XCTAssertTrue(question.checkAnswer("true"))
+            } else {
+                XCTAssertTrue(question.checkAnswer("false"))
+            }
         }
     }
 }

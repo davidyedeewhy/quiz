@@ -15,12 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        let landingViewController = LandingViewController()
-        window?.rootViewController = UINavigationController(rootViewController: landingViewController)
-        window?.makeKeyAndVisible()
-        UINavigationBar.appearance().backgroundColor = .clear
-        UINavigationBar.appearance().isTranslucent = true
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        let landingViewController = LandingViewController()
+//        window?.rootViewController = UINavigationController(rootViewController: landingViewController)
+//        window?.makeKeyAndVisible()
+//        UINavigationBar.appearance().backgroundColor = .clear
+//        UINavigationBar.appearance().isTranslucent = true
         return true
     }
 

@@ -9,26 +9,28 @@
 import Foundation
 
 class QuestionsViewModel {
-    var domain: Domain?
-    var questions: [QuizViewModel]?
+    let domain: Domain?
+    let questions: [QuizViewModel]?
     
     init() {
-        if let url = Bundle.main.path(forResource: "question", ofType: "json"),
+        guard let url = Bundle.main.path(forResource: "question", ofType: "json"),
             let data = try? Data(contentsOf: URL(fileURLWithPath: url)),
-            let content = try? JSONDecoder().decode(QuizResponse.self, from: data)
-        {
-            domain = content.domain
-            questions = content.questions.map { QuizViewModel($0) }
+            let content = try? JSONDecoder().decode(QuizResponse.self, from: data) else {
+                domain = nil
+                questions = nil
+                return
         }
+        domain = content.domain
+        questions = content.questions.map { QuizViewModel($0) }
     }
     
-    func next(_ index: Int) -> QuizViewModel? {
+    subscript(_ index: Int) -> QuizViewModel? {
         guard let questions = questions, index < questions.count else { return nil }
         return questions[index]
     }
 }
 
-struct QuizViewModel {
+struct QuizViewModel: Equatable {
     
     let question: String
     let answer: Bool
@@ -38,4 +40,9 @@ struct QuizViewModel {
         self.answer = quiz.answer
     }
     
+    func checkAnswer(_ answer: String) -> Bool {
+        return self.answer.description == answer.lowercased()
+    }
+    
 }
+
