@@ -13,7 +13,21 @@ class LandingViewController: UIViewController {
     // MARK: - variables
     
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var playButton: UIButton!
     private var score: Int = 0
+    private var progress: (answered: Int, total: Int) = (0, 0)
+    
+    // MARK: - view life cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        scoreLabel.text = "\(score) (\(progress.answered)/\(progress.total))"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        playButton.setTitle(progress.total == 0 ? "Play" : "Continue", for: .normal)
+    }
 
     // MARK: - segue
     
@@ -21,6 +35,7 @@ class LandingViewController: UIViewController {
         guard segue.identifier == "showQuestion" else { return }
         if let questionViewController = (segue.destination as? UINavigationController)?.viewControllers.first as? QuestionViewController {
             questionViewController.delegate = self
+            questionViewController.questionIndex = progress.total
         }
     }
 
@@ -35,9 +50,11 @@ protocol ResultDelegate: class {
 extension LandingViewController: ResultDelegate {
     
     func updateScore(_ isRight: Bool) {
+        progress.total += 1
         if isRight {
+            progress.answered += 1
             score += 20
-            scoreLabel.text = "\(score)"
+            scoreLabel.text = "\(score) (\(progress.answered)/\(progress.total))"
         }
     }
     

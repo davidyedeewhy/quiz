@@ -14,7 +14,8 @@ class QuestionViewController: UIViewController {
     
     weak var delegate: ResultDelegate?
     private let viewModel = QuestionsViewModel()
-    private var questionIndex = 0
+    var questionIndex = 0
+    private var isAnswered = false
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
     
@@ -22,7 +23,7 @@ class QuestionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let question = viewModel.questions?.first {
+        if let question = viewModel[questionIndex] {
             showQuestion(question)
         }
     }
@@ -31,7 +32,9 @@ class QuestionViewController: UIViewController {
     
     private func showQuestion(_ question: QuizViewModel) {
         title = "Question \(questionIndex + 1)"
-        questionLabel.text = question.question
+        questionLabel.text = [viewModel.domain.map { $0.rawValue }, question.question]
+            .compactMap { $0 }
+            .joined(separator: "\n")
         resultLabel.text = nil
     }
     
@@ -41,8 +44,10 @@ class QuestionViewController: UIViewController {
     
     @IBAction private func didAnswer(_ sender: UIButton) {
         guard let question = viewModel[questionIndex],
-            let title = sender.title(for: .normal)
+            let title = sender.title(for: .normal),
+            !isAnswered
             else { return }
+        isAnswered = true
         let isCorrectAnswer = question.checkAnswer(title)
         resultLabel.text = "Your answer is \(isCorrectAnswer ? "right" : "wrong")"
         questionIndex += 1
@@ -51,6 +56,7 @@ class QuestionViewController: UIViewController {
     
     @IBAction private func didTapNext(_ sender: UIButton) {
         if let question = viewModel[questionIndex] {
+            isAnswered = false
             showQuestion(question)
         } else {
             dismiss(animated: true)

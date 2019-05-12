@@ -58,6 +58,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="BfK-SI-ReD"/>
                     <connections>
+                        <outlet property="playButton" destination="JKt-j3-a9m" id="PAI-rl-TNt"/>
                         <outlet property="scoreLabel" destination="Ylc-FH-4wg" id="Xae-Bt-tDv"/>
                     </connections>
                 </viewController>

@@ -17,6 +17,7 @@
 		52DEA81C2286645A00F10B7A /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DEA81B2286645A00F10B7A /* QuizViewModel.swift */; };
 		52DEA81E2286CFEA00F10B7A /* question.json in Resources */ = {isa = PBXBuildFile; fileRef = 52DEA81D2286CFE900F10B7A /* question.json */; };
 		52DEA8232287B39900F10B7A /* Quiz.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52DEA8222287B39900F10B7A /* Quiz.storyboard */; };
+		52DEA8252288320600F10B7A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 52DEA8242288320600F10B7A /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		52DEA81B2286645A00F10B7A /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		52DEA81D2286CFE900F10B7A /* question.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = question.json; path = Quiz/question.json; sourceTree = SOURCE_ROOT; };
 		52DEA8222287B39900F10B7A /* Quiz.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Quiz.storyboard; sourceTree = "<group>"; };
+		52DEA8242288320600F10B7A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,11 +87,9 @@
 		52DEA7EA2286569600F10B7A /* Quiz */ = {
 			isa = PBXGroup;
 			children = (
-				52DEA80D2286588400F10B7A /* Module */,
-				52DEA7EB2286569600F10B7A /* AppDelegate.swift */,
-				52DEA7F22286569700F10B7A /* Assets.xcassets */,
-				52DEA7F42286569700F10B7A /* LaunchScreen.storyboard */,
 				52DEA7F72286569700F10B7A /* Info.plist */,
+				52DEA8262288327C00F10B7A /* Launch */,
+				52DEA80D2286588400F10B7A /* Module */,
 			);
 			path = Quiz;
 			sourceTree = "<group>";
@@ -138,6 +138,17 @@
 				52DEA81B2286645A00F10B7A /* QuizViewModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		52DEA8262288327C00F10B7A /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				52DEA7EB2286569600F10B7A /* AppDelegate.swift */,
+				52DEA7F22286569700F10B7A /* Assets.xcassets */,
+				52DEA7F42286569700F10B7A /* LaunchScreen.storyboard */,
+				52DEA8242288320600F10B7A /* README.md */,
+			);
+			path = Launch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +236,7 @@
 				52DEA81E2286CFEA00F10B7A /* question.json in Resources */,
 				52DEA7F32286569700F10B7A /* Assets.xcassets in Resources */,
 				52DEA8232287B39900F10B7A /* Quiz.storyboard in Resources */,
+				52DEA8252288320600F10B7A /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
